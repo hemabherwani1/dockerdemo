@@ -1,0 +1,14 @@
+FROM centos
+
+RUN yum -y install httpd unzip
+
+LABEL maintener=hema
+LABEL vendor=XYZ
+LABEL quality=none
+
+ENV HTML new_html_stylesheets
+
+WORKDIR /var/www/html/
+
+ADD 
+

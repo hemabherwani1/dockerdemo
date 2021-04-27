@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+
+  demo-app:
+    container_name: "demo-app"
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      demo-db:
+        condition: "service_healthy"
+    environment:
+      ENV_VALUE: "dev"
+      DB_URL: "jdbc:mysql://demo-db:3306/demo_db?createDatabaseIfNotExist=true"
+      DB_USERNAME: "hema"
+      DB_PASSWORD: "demopwd"
+
+  demo-db:
+    container_name: "demo-db"
+    image: "mysql/mysql-server:5.7.34"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "demo_db"
+      MYSQL_USER: "hema"
+      MYSQL_PASSWORD: "demopwd"
